@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آراء الطلاب وأولياء الأمور | تامر ربيع - Mr. Rabie</title>
+    <meta name="description" content="اكتشف آراء الطلاب وأولياء الأمور عن تجربة التعلم مع Mr. Rabie">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>MR</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-dark: #3730a3;
+            --secondary-color: #fbbf24;
+            --secondary-dark: #f59e0b;
+            --text-color: #333;
+            --text-light: #6b7280;
+            --bg-color: #f0f9ff;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-dark: #1e40af;
+            --text-color: #e5e7eb;
+            --text-light: #9ca3af;
+            --bg-color: #0f172a;
+            --white: #1e2937;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        body {
+            background: var(--bg-color);
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .lang-switcher:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: var(--white);
+            border: 2px solid var(--secondary-color);
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Hero Section */
+        .hero-testimonials {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-testimonials::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .hero-testimonials h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            font-weight: 900;
+        }
+        
+        .hero-testimonials .subtitle {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        
+        .hero-testimonials .description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            opacity: 0.95;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 70px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s;
+            border-top: 5px solid var(--secondary-color);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .filter-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .filter-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: var(--white);
+            border: 2px solid #e5e7eb;
+            border-radius: 50px;
+            color: var(--text-light);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--secondary-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 35px;
+        }
+        
+        /* Testimonial Card */
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            opacity: 1;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 150px;
+            color: rgba(251, 191, 36, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .testimonial-card.hide {
+            display: none;
+        }
+        
+        /* Card Header */
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--white);
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-md);
+            border: 4px solid var(--white);
+        }
+        
+        .avatar.blue {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        .avatar.purple {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .card-info h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .card-info .role {
+            color: var(--secondary-dark);
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Stars Rating */
+        .stars {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stars i {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4));
+        }
+        
+        /* Testimonial Text */
+        .testimonial-text {
+            color: #4b5563;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 15px;
+            border-right: 4px solid var(--secondary-color);
+        }
+        
+        /* Card Footer */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #f3f4f6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .date {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .verified {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Category Badge */
+        .category-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--white);
+            z-index: 3;
+        }
+        
+        .badge-student {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        
+        .badge-parent {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .badge-colleague {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border-radius: 30px;
+            padding: 80px 40px;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--white);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-testimonials h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <i class="fas fa-language lang-icon"></i>
+        <span class="lang-text" id="langText">EN</span>
+    </div>
+    
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-testimonials">
+        <h1 data-ar="آراء الطلاب وأولياء الأمور" data-en="Student & Parent Testimonials">آراء الطلاب وأولياء الأمور</h1>
+        <p class="subtitle" data-ar="اكتشف ما يقوله الآخرون عن تجربة التعلم مع Mr. Rabie" data-en="Discover what others say about learning with Mr. Rabie">اكتشف ما يقوله الآخرون عن تجربة التعلم مع Mr. Rabie</p>
+        <p class="description" data-ar="على مدار سنوات من التدريس، تشرفت بتعليم مئات الطلاب ومساعدتهم على تحقيق أهدافهم. هنا تقرأ تجارهم الحقيقية بكلماتهم الخاصة.</p>
+    </section>
+    
+    <div class="container">
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-number" data-target="500">0</div>
+                <div class="stat-label" data-ar="طالب سعيد" data-en="Happy Students">طالب سعيد</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-number">4.9</div>
+                <div class="stat-label" data-ar="متوسط التقييم" data-en="Average Rating">متوسط التقييم</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label" data-ar="نسبة الرضا %" data-en="Satisfaction Rate %">نسبة الرضا %</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-label" data-ar="سنوات خبرة" data-en="Years of Experience">سنوات خبرة</div>
+            </div>
+        </section>
+        
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <h2 class="filter-title" data-ar="اختر نوع الشهادة" data-en="Choose Testimonial Type">اختر نوع الشهادة</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" data-ar="الكل" data-en="All">
+                    <i class="fas fa-th-large"></i> الكل
+                </button>
+                <button class="filter-btn" data-filter="student" data-ar="الطلاب" data-en="Students">
+                    <i class="fas fa-user-graduate"></i> الطلاب
+                </button>
+                <button class="filter-btn" data-filter="parent" data-ar="أولياء الأمور" data-en="Parents">
+                    <i class="fas fa-users"></i> أولياء الأمور
+                </button>
+                <button class="filter-btn" data-filter="colleague" data-ar="الزملاء" data-en="Colleagues">
+                    <i class="fas fa-chalkboard-teacher"></i> ال<|eos|>
