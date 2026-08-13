@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معي | تامر ربيع - Mr. Rabie</title>
+    <meta name="description" content="تواصل مع تامر ربيع - معلم لغة إنجليزية وصانع محتوى تعليمي">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>MR</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-dark: #3730a3;
+            --secondary-color: #fbbf24;
+            --secondary-dark: #f59e0b;
+            --text-color: #333;
+            --text-light: #6b7280;
+            --bg-color: #f0f9ff;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-dark: #1e40af;
+            --text-color: #e5e7eb;
+            --text-light: #9ca3af;
+            --bg-color: #0f172a;
+            --bg-light: #1e2937;
+            --white: #1e2937;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        body {
+            background: var(--bg-color);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--text-color);
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .lang-switcher:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: var(--white);
+            border: 2px solid var(--secondary-color);
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-contact {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 100px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .hero-contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .hero-contact h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            font-weight: 900;
+        }
+        
+        .hero-contact .subtitle {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-contact .description {
+            max-width: 700px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .form-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color) 0%, var(--secondary-dark) 50%, var(--secondary-color) 100%);
+        }
+        
+        .form-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 800;
+        }
+        
+        .form-subtitle {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group label .required {
+            color: #ef4444;
+            margin-right: 4px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            pointer-events: none;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 50px 14px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-light);
+            transition: all 0.3s;
+            color: var(--text-color);
+        }
+        
+        .form-group textarea {
+            padding: 14px 50px 14px 18px;
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .info-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .info-card a,
+        .info-card p {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1rem;
+            display: block;
+            line-height: 1.8;
+            transition: color 0.3s;
+        }
+        
+        .info-card a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+        
+        .social-section h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        
+        .social-section p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
+        }
+        
+        .social-link.youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .social-link.facebook { background: linear-gradient(135deg, #1877f2, #0d5cb8); }
+        .social-link.whatsapp { background: linear-gradient(135deg, #25d366, #1da851); }
+        .social-link.instagram { background: linear-gradient(135deg, #e4405f, #c13584); }
+        .social-link.tiktok { background: linear-gradient(135deg, #000000, #25f4ee); }
+        .social-link.telegram { background: linear-gradient(135deg, #0088cc, #0077b5); }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-contact h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <i class="fas fa-language lang-icon"></i>
+        <span class="lang-text" id="langText">EN</span>
+    </div>
+    
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    
+    <div class="container">
+        <section class="hero-contact">
+            <h1 data-ar="تواصل معي" data-en="Contact Me">تواصل معي</h1>
+            <p class="subtitle" data-ar="أنا هنا لمساعدتك في رحلة تعلم اللغة الإنجليزية" data-en="I'm here to help you on your English learning journey">أنا هنا لمساعدتك في رحلة تعلم اللغة الإنجليزية</p>
+            <p class="description" data-ar="سواء كنت طالباً يبحذ عن دروس خصوصية، أو ولي أمر يريد أفضل تعليم لابنه، أو حتى مجبر استفسار عن المحتوى التعليمي - لا تتردد في التواصل معي!" data-en="Whether you're a student looking for private lessons, a parent wanting the best education for your child, or just inquiring about educational content - don't hesitate to contact me!">سواء كنت طالباً يبحث عن دروس خصوصية، أو ولي أمر يريد أفضل تعليم لابنه، أو حتى مجرد استفسار عن المحتوى التعليمي - لا تتردد في التواصل معي!</p>
+        </section>
+        
+        <div class="contact-grid">
+            <div class="form-card">
+                <h2 class="form-title">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-ar="أرسل رسالتك" data-en="Send Your Message">أرسل رسلتك</span>
+                </h2>
+                <p class="form-subtitle" data-ar="املأ النموذج التالي وسأرد عليك في أسرع وقت" data-en="Fill out the following form and I'll get back to you as soon as possible">املأ النموذج التالي وسأرد عليك في أسرع وقت</p>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-ar="الاسم الكامل" data-en="Full Name">الاسم الكامل <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" name="name" id="name" required minlength="3" data-ar-placeholder="اكتب اسمك الكامل" data-en-placeholder="Enter your full name" placeholder="اكتب اسمك الكامل">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="email" name="email" id="email" required data-ar-placeholder="example@email.com" data-en-placeholder="example@email.com" placeholder="example@email.com">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-ar="رقم الهاتف (اختياري)" data-en="Phone Number (Optional)">رقم الهاتف (اختياري)</label>
+                            <div class="input-wrapper">
+                                <input type="tel" name="phone" id="phone" data-ar-placeholder="01xxxxxxxxx" data-en-placeholder="01xxxxxxxxx" placeholder="01xxxxxxxxx">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-ar="المرحلة الدراسية" data-en="Grade Level">المرحلة الدراسية <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <select name="grade" id="grade" required>
+                                    <option value="" data-ar="-- اختر المرحلة --" data-en="-- Select Grade --">-- اختر المرحلة --</option>
+                                    <option value="primary" data-ar="المرحلة الابتدائية" data-en="Primary School">المرحلة الابتدائية</option>
+                                    <option value="prep1" data-ar="الصف الأول الإعدادي" data-en="Grade 7 (Prep 1)">الصف الأول الإعدادي</option>
+                                    <option value="prep2" data-ar="الصف الثاني الإعدادي" data-en="Grade 8 (Prep 2)">الصف الثاني الإعدادي</option>
+                                    <option value="prep3" data-ar="الصف الثالث الإعدادي" data-en="Grade 9 (Prep 3)">الصف الثالث الإعدادي</option>
+                                    <option value="secondary" data-ar="المرحلة الثانوية" data-en="Secondary School">المرحلة الثانوية</option>
+                                    <option value="adult" data-ar="بالغ / تعلم ذاتي" data-en="Adult / Self-learning">بالغ / تعلم ذاتي</option>
+                                    <option value="other" data-ar="آخر" data-en="Other">آخر</option>
+                                </select>
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label data-ar="الموضوع" data-en="Subject">الموضوع <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <select name="subject" id="subject" required>
+                                    <option value="" data-ar="-- اختر الموضوع --" data-en="-- Select Subject --">-- اختر الموضوع --</option>
+                                    <option value="inquiry" data-ar="استفسار عام" data-en="General Inquiry">استفسار عام</option>
+                                    <option value="course" data-ar="حجز كورس" data-en="Book a Course">حجز كورس</option>
+                                    <option value="session" data-ar="طلب جلسة خصوصية" data-en="Request Private Session">طلب جلسة خصوصية</option>
+                                    <option value="level-test" data-ar="اختبار تحديد المستوى" data-en="Level Assessment Test">اختبار تحديد المستوى</option>
+                                    <option value="photography" data-ar="استفسار عن التصوير الفوتوغرافي" data-en="Photography Inquiry">استفسار عن التصوير الفوتوغرافي</option>
+                                    <option value="suggestion" data-ar="اقتراح أو فكرة" data-en="Suggestion or Idea">اقتراح أو فكرة</option>
+                                    <option value="collaboration" data-ar="تعاون أو شراكة" data-en="Collaboration or Partnership">تعاون أو شراكة</option>
+                                    <option value="other" data-ar="آخر" data-en="Other">آخر</option>
+                                </select>
+                                <i class="fas fa-list"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label data-ar="رسالتك" data-en="Your Message">رسالتك <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <textarea name="message" id="message" required minlength="10" maxlength="1000" data-ar-placeholder="اكتب رسالتك هنا..." data-en-placeholder="Write your message here..." placeholder="اكتب رسالتك هنا..."></textarea>
+                                <i class="fas fa-comment-dots" style="top: 25px;"></i>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <span data-ar="إرسال الرسالة" data-en="Send Message">إرسال الرسالة</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3 data-ar="واتساب (الأسرع)" data-en="WhatsApp (Fastest)">واتساب (الأسرع)</h3>
+                        </div>
+                        <a href="https://wa.me/201xxxxxxxxx" target="_blank">
+                            <i class="fas fa-phone"></i> 01xxxxxxxxx
+                        </a>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #9ca3af;" data-ar="💬 متاح للمحادثات الفورية" data-en="💬 Available for instant chats">💬 متاح للمحادثات الفورية</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3 data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h3>
+                        </div>
+                        <a href="mailto:tamer.rabie@example.com">
+                            tamer.rabie@example.com
+                        </a>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #9ca3af;" data-ar="📧 للرسائل الرسمية والاستفسارات" data-en="📧 For official messages and inquiries">📧 للرسائل الرسمية والاستفسارات</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 data-ar="الموقع" data-en="Location">الموقع</h3>
+                        </div>
+                        <p data-ar="أسوان، مصر 🇪🇬" data-en="Aswan, Egypt 🇪🇬">أسوان، مصر 🇪🇬</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: #9ca3af;" data-ar="🌍 متاح للتعليم عن بُعد" data-en=" <|eos|>
