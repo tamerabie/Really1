@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عنّي | تامر ربيع - Mr. Rabie</title>
+    <meta name="description" content="تعرف على تامر ربيع - معلم لغة إنجليزية وصانع محتوى تعليمي">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>MR</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-dark: #3730a3;
+            --secondary-color: #fbbf24;
+            --secondary-dark: #f59e0b;
+            --text-color: #333;
+            --text-light: #6b7280;
+            --bg-color: #f0f9ff;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-dark: #1e40af;
+            --text-color: #e5e7eb;
+            --text-light: #9ca3af;
+            --bg-color: #0f172a;
+            --bg-light: #1e2937;
+            --white: #1e2937;
+            --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .lang-switcher:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: var(--white);
+            border: 2px solid var(--secondary-color);
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Hero Section */
+        .hero-about {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .hero-about h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            font-weight: 900;
+        }
+        
+        .hero-about .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 60px;
+        }
+        
+        .profile-image {
+            text-align: center;
+        }
+        
+        .profile-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 8px solid var(--secondary-color);
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+        }
+        
+        .profile-info h2 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .profile-info p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, #fef3c7 0%, var(--secondary-color) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            font-size: 150px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: serif;
+        }
+        
+        .quote-section blockquote {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quote-section cite {
+            display: block;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-style: normal;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        
+        /* Journey Section */
+        .journey-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--secondary-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--secondary-color);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+            width: 45%;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-right: auto;
+            margin-left: 55%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            margin-right: 55%;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            top: 40px;
+        }
+        
+        .timeline-item:nth-child(odd)::before {
+            left: -32px;
+        }
+        
+        .timeline-item:nth-child(even)::before {
+            right: -32px;
+        }
+        
+        .timeline-year {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Philosophy Section */
+        .philosophy-section {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 60px;
+        }
+        
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .philosophy-card {
+            padding: 30px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #e0f2fe;
+            transition: transform 0.3s;
+        }
+        
+        .philosophy-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .philosophy-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .philosophy-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 80px 20px;
+            border-radius: 20px;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-about h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="lang-switcher" onclick="toggleLanguage()">
+        <i class="fas fa-language lang-icon"></i>
+        <span class="lang-text" id="langText">EN</span>
+    </div>
+    
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <h1 data-ar="عنّي" data-en="About Me">عنّي</h1>
+        <p class="subtitle" data-ar="تعرف على رحلتي في تعليم اللغة الإنجليزية" data-en="Discover my journey in teaching English">تعرف على رحلتي في تعليم اللغة الإنجليزية</p>
+    </section>
+    
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-image">
+                <img src="https://via.placeholder.com/250x250/1e3a8a/fbbf24?text=Mr.+Rabie" alt="Tamer Rabie">
+            </div>
+            <div class="profile-info">
+                <h2 data-ar="تامر ربيع | Mr. Rabie" data-en="Tamer Rabie | Mr. Rabie">تامر ربيع | Mr. Rabie</h2>
+                <p data-ar="صانع محتوى تعليمي | معلم لغة إنجليزية" data-en="Educational Content Creator | English Teacher"><strong>صانع محتوى تعليمي | معلم لغة إنجليزية</strong></p>
+                <p data-ar="أهلاً بك في صفحتي الشخصية! أنا تامر ربيع، معلم لغة إنجليزية شغوف بتحويل طريقة تعلم الطلاب للغة الإنجليزية من مجرد حفظ قواعد وكلمات إلى رحلة ممتعة لاكتشاف ثقافة جديدة وتطوير طريقة التفكير." data-en="Welcome to my personal page! I'm Tamer Rabie, an English teacher passionate about transforming students' learning experience from memorizing rules and words to an enjoyable journey of discovering new cultures and developing new ways of thinking.">أهلاً بك في صفحتي الشخصية! أنا تامر ربيع، معلم لغة إنجليزية شغوف بتحويل طريقة تعلم الطلاب للغة الإنجليزية من مجرد حفظ قواعد وكلمات إلى رحلة ممتعة لاكتشاف ثقافة جديدة وتطوير طريقة التفكير.</p>
+                <p data-ar="من مسقط رأسي في أسوان الحبيبة، بدأت رحلتي في عالم التعليم بهدف واحد: جعل اللغة الإنجليزية متاحة وممتعة لكل طالب." data-en="From my beloved hometown of Aswan, I began my journey in education with one goal: making English accessible and enjoyable for every student.">من مسقط رأسي في أسوان الحبيبة، بدأت رحلتي في عالم التعليم بهدف واحد: جعل اللغة الإنجليزية متاحة وممتعة لكل طالب.</p>
+                <p data-ar="أؤمن أن كل ط<|eos|>
